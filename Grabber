@@ -1,0 +1,303 @@
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Corner Brook AR • Point. Scan. Discover.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --primary:#00d4ff; }
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#0a0a0a;
+  color:white;
+}
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85)),
+  url('https://images.pexels.com/photos/2478248/pexels-photo-2478248.jpeg') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero-content { max-width:860px; }
+
+h1 {
+  font-size:clamp(2.2rem,8vw,4rem);
+  margin-bottom:20px;
+}
+
+p {
+  font-size:1.2rem;
+  opacity:0.95;
+}
+
+/* CTA */
+.cta-group {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:16px;
+  margin:30px 0;
+}
+
+.cta {
+  background:var(--primary);
+  color:#000;
+  padding:16px 36px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  cursor:pointer;
+  border:none;
+  transition:0.2s;
+}
+
+.cta:hover {
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(0,212,255,0.6);
+}
+
+.cta-secondary {
+  background:transparent;
+  border:2px solid white;
+  color:white;
+}
+
+/* BELIEF */
+.belief {
+  margin-top:10px;
+  opacity:0.7;
+}
+
+/* VIDEO */
+.video {
+  margin-top:40px;
+  max-width:720px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.video video {
+  width:100%;
+  border-radius:20px;
+  opacity:0.85;
+  transition:0.3s;
+}
+.video video:hover { opacity:1; }
+
+/* SECTIONS */
+.section {
+  padding:80px 20px;
+  text-align:center;
+  border-top:1px solid #222;
+}
+
+/* CARDS */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.card {
+  background:#1a1a1a;
+  padding:30px;
+  border-radius:20px;
+  transition:0.2s;
+}
+
+.card:hover {
+  transform:translateY(-5px);
+  border:1px solid var(--primary);
+}
+
+/* CONTACT */
+.contact a {
+  color:var(--primary);
+  text-decoration:none;
+  border-bottom:1px solid var(--primary);
+}
+
+/* FAKE AR MODAL */
+.ar-modal {
+  position:fixed;
+  inset:0;
+  background:black;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
+
+.ar-view {
+  width:100%;
+  height:100%;
+  background:url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg') center/cover;
+  position:relative;
+}
+
+.ar-overlay {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0.5);
+  opacity:0;
+  text-align:center;
+  transition:0.8s ease;
+}
+
+.ar-overlay.active {
+  transform:translate(-50%,-50%) scale(1);
+  opacity:1;
+}
+
+.ar-box {
+  background:rgba(0,0,0,0.7);
+  padding:20px 30px;
+  border-radius:16px;
+  border:1px solid var(--primary);
+}
+
+.close-btn {
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:20px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+
+<h1>
+Point your phone.<br>
+See what’s been here all along.
+</h1>
+
+<p>
+Stand on the street. Watch the past rise around you in 3D.<br>
+Hear the voices that built this place.
+</p>
+
+<div class="cta-group">
+<button class="cta" onclick="openAR()">✨ TRY A SAMPLE STORY</button>
+<a href="#map" class="cta cta-secondary">📍 VIEW LIVE MAP</a>
+</div>
+
+<div class="belief">
+No downloads. No signup. Just open and point.
+</div>
+
+<div class="video">
+<video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" autoplay loop muted></video>
+</div>
+
+</div>
+</section>
+
+<!-- AR SECTION -->
+<section class="section">
+<h2>📱 AR Experience</h2>
+<p>
+You’re standing downtown.<br>
+You lift your phone.<br>
+The past rebuilds itself in front of you.<br><br>
+This is where that starts.
+</p>
+
+<button class="cta" onclick="openAR()">▶ TRY A SAMPLE STORY</button>
+</section>
+
+<!-- MAP -->
+<section id="map" class="section">
+<h2>🗺️ Live Map</h2>
+<p>
+Every story has a location.<br>
+This map reveals where they’re waiting.<br><br>
+New points are being uncovered constantly.
+</p>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+<h2>What you’ll discover</h2>
+
+<div class="grid">
+<div class="card"><h3>🗺️ Map</h3><p>Explore real locations</p></div>
+<div class="card"><h3>📍 AR</h3><p>Stories in 3D space</p></div>
+<div class="card"><h3>🗣️ Voices</h3><p>Local history told aloud</p></div>
+<div class="card"><h3>⭐ Save</h3><p>Track discoveries</p></div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact">
+<h2>Have an idea or want to contribute?</h2>
+<p>This grows from the community.</p>
+<p>
+<a href="mailto:hello@cornerbrookar.ca">
+✉️ Send a message →
+</a>
+</p>
+</section>
+
+<!-- FAKE AR MODAL -->
+<div class="ar-modal" id="arModal">
+<div class="ar-view">
+
+<div class="close-btn" onclick="closeAR()">✕</div>
+
+<div class="ar-overlay" id="overlay">
+<div class="ar-box">
+<h2>📍 Corner Brook • 1925</h2>
+<p>A bustling street. Timber, voices, motion.<br>
+You’re standing in it now.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function openAR(){
+  const modal = document.getElementById('arModal');
+  const overlay = document.getElementById('overlay');
+
+  modal.style.display = 'flex';
+
+  setTimeout(()=>{
+    overlay.classList.add('active');
+  },500);
+}
+
+function closeAR(){
+  document.getElementById('arModal').style.display='none';
+  document.getElementById('overlay').classList.remove('active');
+}
+</script>
+
+</body>
+</html>
